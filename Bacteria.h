@@ -1,5 +1,7 @@
 #include <iostream>
 #include <vector>
+#include <ctime>
+#include <stdlib.h>
 using namespace std;
 
 class Animal
@@ -15,8 +17,11 @@ public:
     int getY();
     int getAntigen();
 
+    void static print();
 private:
     unsigned int x_;
     unsigned int y_;
     unsigned int antigen_;
 };
+
+int RNG(int max);

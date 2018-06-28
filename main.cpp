@@ -2,9 +2,6 @@
 
 int main()
 {
-    Animal a;
-    a.setAntigen(8);
-    cout << a.getAntigen() << endl;
-
+    Animal::charVec.print();
     return 0;
 }

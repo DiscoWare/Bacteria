@@ -1,6 +1,6 @@
 #include "Bacteria.h"
 
-vector< vector<char> > Animal::charVec(2500);
+vector< vector<char> > Animal::charVec( 50, vector<char>(50, '.') );
 
 Animal::Animal()
 {
@@ -32,4 +32,24 @@ int Animal::getY()
 int Animal::getAntigen()
 {
     return antigen_;
+}
+
+void Animal::print()
+{
+    unsigned int end = Animal::charVec.size();
+    unsigned int endOfRow;
+    for (unsigned int i = 0; i < end; ++i)
+    {
+        endOfRow = Animal::charVec[i].size();
+        for (unsigned int e = 0; e < endOfRow; ++e)
+        {
+            cout << Animal::charVec[i][e] << ' ';   
+        } 
+        cout << endl;
+    }
+}
+
+int RNG(int max)
+{
+    return rand() % max + 1;
 }

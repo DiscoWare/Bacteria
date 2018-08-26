@@ -35,6 +35,11 @@ void Animal::setVectors()
     cerr << "ERROR: ANIMAL SETVECTOR\n";
 }
 
+int Animal::getIntFromPos(int x, int y)
+{
+    return (y - 1) * 50 + x;
+}
+
 void Animal::print()
 {
     cout << "PRINT" << endl;
@@ -76,6 +81,55 @@ void Bacteria::setVectors()
 
 void Bacteria::move()
 {
+    int x;
+    int y;
+    returnPosition(x, y);
+    cout << x << " " << y << endl;
+    if (x != getX() || y != getY())
+    {
+        charVec[getY() - 1][getX() - 1] = '.';
+        setXY(x, y);
+        cout << getX() << " " << getY() << endl;
+        setVectors();
+    }
+}
+
+void Bacteria::returnPosition(int &x, int &y)
+{
+    y = getY();
+    x = getX();
+    vector<char> directions = {'u', 'r', 'd', 'l'};
+    int numberOfElements = 4;
+    while (directions.size() > 0)
+    {
+        int randIndex = RNG(numberOfElements);
+        cout << "randIndex: " << randIndex << endl;
+        if (isAvailable(directions[randIndex]) == 't')
+        {
+            if (directions[randIndex] == 'u')
+            {
+                --y;
+            }
+            else if (directions[randIndex] == 'r')
+            {
+                ++x;
+            }
+            else if (directions[randIndex] == 'd')
+            {
+                ++y;
+            }
+            else
+            {
+                --x;
+            }
+            directions.clear();
+        }
+        else
+        {
+            directions.erase(directions.begin() + randIndex);
+            --numberOfElements;
+        }
+    }
 
 }
 
@@ -140,5 +194,5 @@ char Bacteria::isAvailable(char dir)
 
 int RNG(int max)
 {
-    return rand() % max + 1;
+    return rand() % max;
 }

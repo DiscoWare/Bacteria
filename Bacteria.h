@@ -15,6 +15,7 @@ public:
     virtual void setXY(int x, int y);
     void setAntigen(int antigen);
     virtual void setVectors();
+    int getIntFromPos(int x, int y);    // Get a single integer b/w 1 and 2500 from X and Y Coordinates
 
     int getX();
     int getY();
@@ -37,6 +38,7 @@ public:
     void setXY(int x, int y);
     void setVectors();
     void move();
+    void returnPosition(int &x, int &y);
 
     char isAvailable(char dir);
 

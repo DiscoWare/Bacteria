@@ -1,5 +1,11 @@
  #include "Bacteria.h"
 
+void prompt()
+{
+    string input;
+    cin >> input;
+}
+
 int main()
 {
     srand(time(NULL));              // set seed for RNG()
@@ -9,11 +15,13 @@ int main()
     Animal::charVec[b.getY() - 1][b.getX() - 1] = '.';
     b.setXY(2, 3);
     Animal::print();
-    cout << "Before move: " << b.getX() << " " << b.getY() << endl;
-    b.move();
-    cout << "After move: " << b.getX() << " " << b.getY() << endl;
-    Animal::print();
-    cout << "TEST GIT STASH\n";
-    cout << "Test version control\n";
+    while (true)
+    {
+        prompt();
+        b.move();
+        Animal::print();
+    }
+
+    
     return 0;
 }

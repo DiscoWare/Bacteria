@@ -172,7 +172,7 @@ char Bacteria::isAvailable(char dir)
 
     if (notEdge)
     {
-        if (charVec[pos.first - 1][pos.second -1] == '0'||
+        if (charVec[pos.first - 1][pos.second -1] == 'O'||
             charVec[pos.first - 1][pos.second -1] == '@')
         {
             return 'f';

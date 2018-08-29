@@ -38,6 +38,7 @@ public:
     void setXY(int x, int y);
     void setVectors();
     void move();
+    void reproduce();
     void returnPosition(int &x, int &y);
 
     char isAvailable(char dir);

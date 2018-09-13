@@ -61,6 +61,8 @@ Bacteria::Bacteria(int x, int y, int antigen, bool infected)
     setAntigen(antigen);
     infected_ = infected;
     setXY(x, y);
+    pair<int, Bacteria> insertThis(getIntFromPos(x, y), *this);
+    bacMap.insert(insertThis);
 }
 
 void Bacteria::setXY(int x, int y)
@@ -84,14 +86,27 @@ void Bacteria::move()
     int x;
     int y;
     returnPosition(x, y);
-    cout << x << " " << y << endl;
     if (x != getX() || y != getY())
     {
         charVec[getY() - 1][getX() - 1] = '.';
-        setXY(x, y);
-        cout << getX() << " " << getY() << endl;
-        setVectors();
+        Bacteria newBac = Bacteria(x, y, getAntigen(), infected_);
+        Bacteria::bacMap.erase(getIntFromPos(getX(), getY()));
     }
+    cout << "Bacteria at position: " << getX() << ", " << getY() 
+        << " moving to " << x << ", " << y << endl;
+}
+
+void Bacteria::reproduce()
+{
+    int x;
+    int y;
+    returnPosition(x, y);
+    if (x != getX() || y != getY())
+    {
+        Bacteria newBac(x, y, getAntigen(), false);
+    }
+    cout << "Bacteria at position: " << getX() << ", " << getY()
+        << " reproduced to " << x << ", " << y << endl;
 }
 
 void Bacteria::returnPosition(int &x, int &y)
@@ -103,7 +118,6 @@ void Bacteria::returnPosition(int &x, int &y)
     while (directions.size() > 0)
     {
         int randIndex = RNG(numberOfElements);
-        cout << "randIndex: " << randIndex << endl;
         if (isAvailable(directions[randIndex]) == 't')
         {
             if (directions[randIndex] == 'u')
